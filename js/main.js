@@ -32,8 +32,8 @@ function update() {
     players[i].yMid += -(players[i].vel * Math.cos(players[i].rot*Math.PI/180));
   }
 
-  ball.x += ball.velX;
-  ball.y += ball.velY;
+  ball.x += ball.velX*2;
+  ball.y += ball.velY*2;
 
   //// DEFINES GOALS AND EDGE OF ARENA
   // input -> goal width
@@ -87,7 +87,7 @@ ballDrawing.src = "assets/RLball.png";
 var ball = {
   x: CANVAS_WIDTH/2,
   y: CANVAS_HEIGHT/2,
-  radius: 30,
+  radius: 31,
   velX: 0,
   velY: 0,
   draw: function() {
@@ -165,22 +165,22 @@ function KeyboardController(keys, repeat) {
 KeyboardController({
   // PLAYER 1 CONTROLS
   // A
-    65: function() { players[0].rot -= 10; },
+    65: function() { players[0].rot -= 20; },
   // W
-    87: function() { players[0].vel < 4 ? players[0].vel += .15 : players[0].vel = players[0].vel; },
+    87: function() { players[0].vel < 8 ? players[0].vel += .30 : players[0].vel = players[0].vel; },
   // D
-    68: function() { players[0].rot += 10; },
+    68: function() { players[0].rot += 20; },
   // S
-    83: function() { players[0].vel > -2.5 ? players[0].vel -= .25 : players[0].vel = players[0].vel; },
+    83: function() { players[0].vel > -5 ? players[0].vel -= .5 : players[0].vel = players[0].vel; },
   // PLAYER 2 CONTROLS
   // left
-    37: function() { players[1].rot -= 10; },
+    37: function() { players[1].rot -= 20; },
   // up
-    38: function() { players[1].vel < 4 ? players[1].vel += .15 : players[1].vel = players[1].vel; },
+    38: function() { players[1].vel < 8 ? players[1].vel += .30 : players[1].vel = players[1].vel; },
   // right
-    39: function() { players[1].rot += 10; },
+    39: function() { players[1].rot += 20; },
   // down
-    40: function() { players[1].vel > -2.5 ? players[1].vel -= .25 : players[1].vel = players[1].vel; },
+    40: function() { players[1].vel > -5 ? players[1].vel -= .5 : players[1].vel = players[1].vel; },
 }, 50);
 
 
@@ -200,7 +200,7 @@ function carFriction(friction) {
 
 // SPEED DECAY FUNCTION CALL
 setInterval(function() {
-  ballFriction(.2);
+  ballFriction(.1);
   carFriction(.1);
 }, 500);
 
